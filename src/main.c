@@ -108,16 +108,8 @@ int postion_select(int arr[3][3], int player, int *winner_ptr) {
 
   first_index = (*user_input - '0') - 1;
   second_index = user_input[1] - 65;
-
-  printf("first: %d \nsecond: %d \n",first_index, second_index); // it still shows but since a computer is faster then my optical nerves of course my ass is not going to see it 
-
+  
   arr[first_index][second_index] = player;
 
-  // testing to see if game loops closes
-  // if (first_index == 0 && second_index == 0) {
-  //   *winner_ptr = 1;
-  // }
-  // i need to convert something like string 1a to int 0 0 
-  // using ascii i guess i can narrow down their number value
   return 0;
 }
