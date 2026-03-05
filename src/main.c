@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int check_winner(int player, int arr[3][3]);
+int check_winner(int arr[3][3] ,int player);
 void display_board(int arr[3][3], int player);
 int postion_select(int arr[3][3], int player, int *winner_ptr);
 
@@ -20,17 +20,22 @@ int main() {
 
   while(winner == 0) {
     // system("clear");
-    printf("\033[H\033[J");
-    printf("\n\n");
+
     display_board(matrix, turn % 2 ? player1 : player2);
     postion_select(matrix, turn % 2 ? player1 : player2, winner_ptr);
+    if (check_winner(matrix, turn % 2 ? player1 : player2) == 0) {
+      display_board(matrix, turn % 2 ? player1 : player2);
+      printf("Winner is PLAYER %c\n", turn % 2 ? player1 : player2);
+      *winner_ptr = 1;
+    }
+    
     turn ++;
   }
 
   return 0;
 }
 
-int check_winner(int player, int arr[3][3]) {
+int check_winner(int arr[3][3], int player) {
   for (int i = 0; i < 3; i++ ) {
     if (arr[i][0] == player && arr[i][0] == arr[i][1] && arr[i][1] == arr[i][2]) {
       return 0;
@@ -53,6 +58,8 @@ int check_winner(int player, int arr[3][3]) {
 }
 
 void display_board(int arr[3][3], int player) {
+  printf("\033[H\033[J");
+  printf("\n\n");
   printf("====");
   printf("====");
   printf("TIC TAC TOE");
@@ -108,9 +115,9 @@ int postion_select(int arr[3][3], int player, int *winner_ptr) {
   arr[first_index][second_index] = player;
 
   // testing to see if game loops closes
-  if (first_index == 0 && second_index == 0) {
-    *winner_ptr = 1;
-  }
+  // if (first_index == 0 && second_index == 0) {
+  //   *winner_ptr = 1;
+  // }
   // i need to convert something like string 1a to int 0 0 
   // using ascii i guess i can narrow down their number value
   return 0;
