@@ -67,20 +67,15 @@ void display_board(int arr[3][3], int player) {
     printf("  %d     ", i + 1);
     for (int x = 0; x < 3 ; x ++) {
       char slot[4];
-      if (arr[i][x] != 0 ) {
-        snprintf(slot, sizeof(slot), "_%c_", arr[i][x]);
-
+      if (arr[i][x] != 0) {
+        snprintf(slot, sizeof(slot), i == 2 ? " %c " : "_%c_", arr[i][x]);
       } else {
-
-        strcpy(slot, "___");
+        strcpy(slot, i == 2 ? "   " : "___");
       }
-      // printf("%s%s", i + 1 == 3 ? "   " : slot ,x + 1 == 3 ? slot : "|");
-      // this is showing the dashes in the bottom
-      if (x < 2) {
-        printf("%s|", slot);
 
-      } else {
-        printf("%s",  slot); 
+      printf("%s", slot);
+      if (x < 2) {
+        printf("|");
       }
 
     }
