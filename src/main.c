@@ -3,21 +3,25 @@
 
 int check_winner(int player, int arr[3][3]);
 void display_board(int arr[3][3], int player);
-void postion_select(int player);
+void postion_select(int arr[3][3], int player);
 
 int main() {
   int matrix[3][3] = {
-    {0,0,0},
+    {1,0,0},
     {0,0,0},
     {0,0,0},
   };
 
   int player1 = 1, player2 =  2;
 
+  int winner = 0;
+  while(winner == 0) {
+    display_board(matrix, player1);
+    postion_select(matrix, player1);
 
+  }
 
-  display_board(matrix, player1);
-  postion_select(player1);  
+  // display_board(matrix, player1);  
   return 0;
 }
 
@@ -74,10 +78,21 @@ void display_board(int arr[3][3], int player) {
   printf("=====\n");
 }
 
-void postion_select(int player) {
+void postion_select(int arr[3][3], int player) {
 
   char user_input[3]; 
+  int first_index;
+  int second_index;
 
-  printf("Enter Select: ");
+  printf("Enter Select (NUM LETTER): ");
   fgets(user_input, 3, stdin);
+
+  first_index = *user_input - '0';
+  second_index = user_input[1] - 65;
+
+  printf("first: %lu \nsecond: %lu \n",first_index, second_index);
+
+  arr[first_index][second_index] = player;
+  // i need to convert something like string 1a to int 0 0 
+  // using ascii i guess i can narrow down their number value
 }
