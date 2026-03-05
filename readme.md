@@ -1,5 +1,5 @@
 # C Tic-Tac-Toe
-
+<img src="https://github.com/RTBlanco/C_tic-tac-toe/blob/main/repo-image.png?raw=true" />
 A simple **terminal-based Tic-Tac-Toe game written in C**.
 
 I built this project mainly as a way to get more comfortable working with the **C programming language**, focusing on fundamentals like memory handling, arrays, pointers, and general program structure.
