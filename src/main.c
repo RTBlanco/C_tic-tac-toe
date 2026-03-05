@@ -2,6 +2,7 @@
 #include <stdio.h>
 
 int check_winner(int player, int arr[3][3]);
+void display_board(int arr[3][3]);
 
 int main() {
   int matrix[3][3] = {
@@ -12,7 +13,7 @@ int main() {
 
 
 
-  printf("Hello World\n");
+  display_board(matrix);  
   return 0;
 }
 
@@ -36,4 +37,24 @@ int check_winner(int player, int arr[3][3]) {
   }
 
   return 1;
+}
+
+void display_board(int arr[3][3]) {
+
+  printf("         A   B   C\n");
+  for (int i = 0; i < 3; i ++) {
+    printf("  %d     ", i + 1);
+    for (int x = 0; x < 3 ; x ++) {
+      printf("%s%c", i + 1 == 3 ? "   " : "___" ,x + 1 == 3 ? '\0' : '|');
+
+    }
+    printf("\n");
+  }
+
+
+  printf("=====");
+  printf("=====");
+  printf("PLAYER 1");
+  printf("=====");
+  printf("=====\n");
 }
