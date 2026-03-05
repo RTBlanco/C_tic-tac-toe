@@ -40,7 +40,19 @@ int check_winner(int player, int arr[3][3]) {
 }
 
 void display_board(int arr[3][3]) {
+  system("clear");
 
+;
+  printf("====");
+  printf("====");
+  printf("TIC TAC TOE");
+  printf("====");
+  printf("====\n");
+  for (int i = 0; i < 27; i ++ ) { printf("="); }
+  printf("\n");
+
+
+  
   printf("         A   B   C\n");
   for (int i = 0; i < 3; i ++) {
     printf("  %d     ", i + 1);
