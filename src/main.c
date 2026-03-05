@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 int check_winner(int arr[3][3] ,int player);
 void display_board(int arr[3][3], int player);
@@ -14,19 +15,18 @@ int main() {
 
   int player1 = 120, player2 =  111; 
 
-  int winner = 0;
+  int running = 0;
   int turn = 0;
-  // int *winner_ptr = &winner;
   int *turn_ptr = &turn; 
 
-  while(winner == 0) {
+  while(running == 0) {
 
     display_board(matrix, turn % 2 ? player1 : player2);
     postion_select(matrix, turn % 2 ? player1 : player2, turn_ptr);
     if (check_winner(matrix, turn % 2 ? player1 : player2) == 0) {
       display_board(matrix, turn % 2 ? player1 : player2);
       printf("Winner is PLAYER %c\n", turn % 2 ? player1 : player2);
-      winner = 1;
+      running = 1;
     }
   }
 
