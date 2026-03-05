@@ -2,7 +2,8 @@
 #include <stdio.h>
 
 int check_winner(int player, int arr[3][3]);
-void display_board(int arr[3][3]);
+void display_board(int arr[3][3], int player);
+void postion_select(int player);
 
 int main() {
   int matrix[3][3] = {
@@ -11,9 +12,12 @@ int main() {
     {0,0,0},
   };
 
+  int player1 = 1, player2 =  2;
 
 
-  display_board(matrix);  
+
+  display_board(matrix, player1);
+  postion_select(player1);  
   return 0;
 }
 
@@ -39,10 +43,9 @@ int check_winner(int player, int arr[3][3]) {
   return 1;
 }
 
-void display_board(int arr[3][3]) {
+void display_board(int arr[3][3], int player) {
   system("clear");
 
-;
   printf("====");
   printf("====");
   printf("TIC TAC TOE");
@@ -66,7 +69,15 @@ void display_board(int arr[3][3]) {
 
   printf("=====");
   printf("=====");
-  printf("PLAYER 1");
+  printf("PLAYER %d", player);
   printf("=====");
   printf("=====\n");
+}
+
+void postion_select(int player) {
+
+  char user_input[3]; 
+
+  printf("Enter Select: ");
+  fgets(user_input, 3, stdin);
 }
