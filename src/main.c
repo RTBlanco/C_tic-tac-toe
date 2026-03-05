@@ -19,7 +19,6 @@ int main() {
   int *winner_ptr = &winner; 
 
   while(winner == 0) {
-    // system("clear");
 
     display_board(matrix, turn % 2 ? player1 : player2);
     postion_select(matrix, turn % 2 ? player1 : player2, winner_ptr);
