@@ -3,29 +3,30 @@
 
 int check_winner(int player, int arr[3][3]);
 void display_board(int arr[3][3], int player);
-void postion_select(int arr[3][3], int player, int *winner_ptr);
+int postion_select(int arr[3][3], int player, int *winner_ptr);
 
 int main() {
   int matrix[3][3] = {
-    {120,111,0},
     {0,0,0},
-    {0,0,111},
+    {0,0,0},
+    {0,0,0},
   };
 
-  int player1 = 120, player2 =  111;
+  int player1 = 120, player2 =  111; 
 
   int winner = 0;
+  int turn = 0;
   int *winner_ptr = &winner; 
 
   while(winner == 0) {
     // system("clear");
     printf("\033[H\033[J");
     printf("\n\n");
-    display_board(matrix, player1);
-    postion_select(matrix, player1, winner_ptr);
+    display_board(matrix, turn % 2 ? player1 : player2);
+    postion_select(matrix, turn % 2 ? player1 : player2, winner_ptr);
+    turn ++;
   }
 
-  // display_board(matrix, player1);  
   return 0;
 }
 
@@ -85,31 +86,32 @@ void display_board(int arr[3][3], int player) {
 
   printf("=====");
   printf("=====");
-  printf("PLAYER %d", player);
+  printf(" PLAYER %c ", player);
   printf("=====");
   printf("=====\n");
 }
 
-void postion_select(int arr[3][3], int player, int *winner_ptr) {
+int postion_select(int arr[3][3], int player, int *winner_ptr) {
 
-  char user_input[3]; 
+  char user_input[4]; 
   int first_index;
   int second_index;
 
   printf("Enter Select (NUM LETTER): ");
-  fgets(user_input, 3, stdin);
+  fgets(user_input, sizeof(user_input), stdin);
 
   first_index = (*user_input - '0') - 1;
   second_index = user_input[1] - 65;
 
-  printf("first: %d \nsecond: %d \n",first_index, second_index);
+  printf("first: %d \nsecond: %d \n",first_index, second_index); // it still shows but since a computer is faster then my optical nerves of course my ass is not going to see it 
 
   arr[first_index][second_index] = player;
 
   // testing to see if game loops closes
-  if (first_index == 0) {
-    // *winner_ptr = 1;
+  if (first_index == 0 && second_index == 0) {
+    *winner_ptr = 1;
   }
   // i need to convert something like string 1a to int 0 0 
   // using ascii i guess i can narrow down their number value
+  return 0;
 }
