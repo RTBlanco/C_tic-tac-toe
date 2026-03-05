@@ -7,12 +7,12 @@ void postion_select(int arr[3][3], int player, int *winner_ptr);
 
 int main() {
   int matrix[3][3] = {
-    {1,0,0},
+    {120,111,0},
     {0,0,0},
-    {0,0,0},
+    {0,0,111},
   };
 
-  int player1 = 1, player2 =  2;
+  int player1 = 120, player2 =  111;
 
   int winner = 0;
   int *winner_ptr = &winner; 
@@ -20,6 +20,7 @@ int main() {
   while(winner == 0) {
     // system("clear");
     printf("\033[H\033[J");
+    printf("\n\n");
     display_board(matrix, player1);
     postion_select(matrix, player1, winner_ptr);
   }
@@ -65,7 +66,22 @@ void display_board(int arr[3][3], int player) {
   for (int i = 0; i < 3; i ++) {
     printf("  %d     ", i + 1);
     for (int x = 0; x < 3 ; x ++) {
-      printf("%s%c", i + 1 == 3 ? "   " : "___" ,x + 1 == 3 ? '\0' : '|');
+      char slot[4];
+      if (arr[i][x] != 0 ) {
+        snprintf(slot, sizeof(slot), "_%c_", arr[i][x]);
+
+      } else {
+
+        strcpy(slot, "___");
+      }
+      // printf("%s%s", i + 1 == 3 ? "   " : slot ,x + 1 == 3 ? slot : "|");
+      // this is showing the dashes in the bottom
+      if (x < 2) {
+        printf("%s|", slot);
+
+      } else {
+        printf("%s",  slot); 
+      }
 
     }
     printf("\n");
