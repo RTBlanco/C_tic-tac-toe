@@ -108,7 +108,7 @@ void postion_select(int arr[3][3], int player, int *winner_ptr) {
 
   // testing to see if game loops closes
   if (first_index == 0) {
-    *winner_ptr = 1;
+    // *winner_ptr = 1;
   }
   // i need to convert something like string 1a to int 0 0 
   // using ascii i guess i can narrow down their number value
