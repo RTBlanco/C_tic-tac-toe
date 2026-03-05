@@ -3,7 +3,7 @@
 
 int check_winner(int arr[3][3] ,int player);
 void display_board(int arr[3][3], int player);
-int postion_select(int arr[3][3], int player, int *winner_ptr);
+int postion_select(int arr[3][3], int player, int *turn);
 
 int main() {
   int matrix[3][3] = {
@@ -16,19 +16,18 @@ int main() {
 
   int winner = 0;
   int turn = 0;
-  int *winner_ptr = &winner; 
+  // int *winner_ptr = &winner;
+  int *turn_ptr = &turn; 
 
   while(winner == 0) {
 
     display_board(matrix, turn % 2 ? player1 : player2);
-    postion_select(matrix, turn % 2 ? player1 : player2, winner_ptr);
+    postion_select(matrix, turn % 2 ? player1 : player2, turn_ptr);
     if (check_winner(matrix, turn % 2 ? player1 : player2) == 0) {
       display_board(matrix, turn % 2 ? player1 : player2);
       printf("Winner is PLAYER %c\n", turn % 2 ? player1 : player2);
-      *winner_ptr = 1;
+      winner = 1;
     }
-    
-    turn ++;
   }
 
   return 0;
@@ -97,7 +96,7 @@ void display_board(int arr[3][3], int player) {
   printf("=====\n");
 }
 
-int postion_select(int arr[3][3], int player, int *winner_ptr) {
+int postion_select(int arr[3][3], int player, int *turn) {
 
   char user_input[4]; 
   int first_index;
@@ -108,8 +107,12 @@ int postion_select(int arr[3][3], int player, int *winner_ptr) {
 
   first_index = (*user_input - '0') - 1;
   second_index = user_input[1] - 65;
-  
-  arr[first_index][second_index] = player;
 
-  return 0;
+  if (arr[first_index][second_index] == 0) {
+    arr[first_index][second_index] = player;
+    (*turn) ++;
+  } 
+
+
+  return 1;
 }
