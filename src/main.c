@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 
 int check_winner(int arr[3][3] ,int player);
 void display_board(int arr[3][3], int player);
@@ -108,7 +109,7 @@ int postion_select(int arr[3][3], int player, int *turn) {
   fgets(user_input, sizeof(user_input), stdin);
 
   first_index = (*user_input - '0') - 1;
-  second_index = user_input[1] - 65;
+  second_index = toupper(user_input[1]) - 65;
 
   if (arr[first_index][second_index] == 0) {
     arr[first_index][second_index] = player;
