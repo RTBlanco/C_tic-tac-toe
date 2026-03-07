@@ -22,10 +22,10 @@ int main() {
   while(running == 0) {
 
     display_board(matrix, turn % 2 ? player1 : player2);
-    postion_select(matrix, turn % 2 ? player1 : player2, turn_ptr);
-    if (check_winner(matrix, turn % 2 ? player1 : player2) == 0) {
-      display_board(matrix, turn % 2 ? player1 : player2);
-      printf("Winner is PLAYER %c\n", turn % 2 ? player1 : player2);
+    
+    if(postion_select(matrix, turn % 2 ? player1 : player2, turn_ptr) == 0){
+      display_board(matrix, turn % 2 ? player2 : player1);
+      printf("Winner is PLAYER %c\n", turn % 2 ? player2 : player1);
       running = 1;
     }
   }
@@ -111,6 +111,7 @@ int postion_select(int arr[3][3], int player, int *turn) {
   if (arr[first_index][second_index] == 0) {
     arr[first_index][second_index] = player;
     (*turn) ++;
+    return check_winner(arr, player) ;
   } 
 
 
