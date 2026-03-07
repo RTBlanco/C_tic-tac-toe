@@ -18,16 +18,18 @@ int main() {
   int running = 0;
   int turn = 0;
   int *turn_ptr = &turn; 
+  int *current_player = &player1;
 
   while(running == 0) {
 
-    display_board(matrix, turn % 2 ? player1 : player2);
+    display_board(matrix, *current_player);
     
-    if(postion_select(matrix, turn % 2 ? player1 : player2, turn_ptr) == 0){
-      display_board(matrix, turn % 2 ? player2 : player1);
-      printf("Winner is PLAYER %c\n", turn % 2 ? player2 : player1);
+    if(postion_select(matrix, *current_player, turn_ptr) == 0){
+      display_board(matrix, *current_player);
+      printf("Winner is PLAYER %c\n", *current_player);
       running = 1;
     }
+    current_player = turn % 2 ? &player2 : &player1;
   }
 
   return 0;
