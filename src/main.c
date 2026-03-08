@@ -15,22 +15,27 @@ int main() {
   };
 
   int player1 = 120, player2 =  111; 
-
+  int filled = 0;
   int running = 0;
   int turn = 0;
   int *turn_ptr = &turn; 
   int *current_player = &player1;
 
   while(running == 0) {
-
-    display_board(matrix, *current_player);
+    filled ++;
     
+    display_board(matrix, *current_player);
     if(postion_select(matrix, *current_player, turn_ptr) == 0){
       display_board(matrix, *current_player);
       printf("Winner is PLAYER %c\n", *current_player);
       running = 1;
+    } else if (filled == 9) {
+      display_board(matrix, *current_player);
+      printf("Tie Game !!\n");
+      running = 1;
     }
     current_player = turn % 2 ? &player2 : &player1;
+    
   }
 
   return 0;
@@ -99,6 +104,7 @@ void display_board(int arr[3][3], int player) {
   printf("=====\n");
 }
 
+
 int postion_select(int arr[3][3], int player, int *turn) {
 
   char user_input[4]; 
@@ -115,7 +121,7 @@ int postion_select(int arr[3][3], int player, int *turn) {
     arr[first_index][second_index] = player;
     (*turn) ++;
     return check_winner(arr, player) ;
-  } 
+  }
 
 
   return 1;
